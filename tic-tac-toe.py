@@ -33,12 +33,67 @@ def modifyArray(num,turn):
         gameBoard[2][1]=turn
     elif (num==8):
         gameBoard[2][2]=turn
+def checkForWinner(gameBoard):
+    #x axis
+    if (gameBoard[0][0]=='X' and gameBoard[0][1]=='X' and gameBoard[0][2]=='X'):
+        print("X is the winner")
+        return "X"
+    elif (gameBoard[0][0]=='O' and gameBoard[0][1]=='O' and gameBoard[0][2]=='O'):
+        print("O is the winner")
+        return "O"
+    elif (gameBoard[1][0]=='X' and gameBoard[1][1]=='X' and gameBoard[1][2]=='X'):
+        print("X  is the winner")
+        return "X"
+    elif gameBoard[1][0]=='O' and gameBoard[1][1]=='O' and gameBoard[1][2]=='O':
+        print("O is the winner")
+        return "O"
+    elif gameBoard[2][0]=='X' and gameBoard[2][1]=='X' and gameBoard[2][2]=='X':
+        print("X is the winner")
+        return "X"
+
+    elif (gameBoard[2][0]=='O' and gameBoard[2][1]=='O' and gameBoard[2][2]=='O'):
+        print("O is the winner")
+        return "O"
+    #y axis
+    if (gameBoard[0][0]=='X' and gameBoard[1][0]=='X' and gameBoard[2][0]=='X'):
+        print("X is the winner")
+        return "X"
+    elif (gameBoard[0][0]=='O' and gameBoard[1][0]=='O' and gameBoard[2][0]=='O'):
+        print("O is the winner")
+        return "O"
+    elif (gameBoard[0][1]=='X' and gameBoard[1][1]=='X' and gameBoard[2][1]=='X'):
+        print("X is the winner")
+        return "X"
+    elif (gameBoard[0][1]=='O' and gameBoard[1][1]=='O'and gameBoard[2][1]=='O'):
+        print("O is the winner")
+        return "O"
+    elif (gameBoard[0][2]=='X' and gameBoard[1][2]=='X' and gameBoard[2][2]=='X'):
+        print("X is the winner")
+        return "X"
+    elif (gameBoard[0][2]=='O' and gameBoard[1][2]=='O' and gameBoard[2][2]=='O'):
+        print("O is the winner")
+        return "O"
+    # z axis
+    if (gameBoard[0][0]=='X' and gameBoard[1][1]=='X' and gameBoard[2][2]=='X' ):
+        print("X is the winner")
+        return "X"
+    elif (gameBoard[0][0]=='O' and gameBoard[1][1]=='O' and gameBoard[2][2]=='O' ):
+        print("O is the winner")
+        return "O"
+    elif (gameBoard[0][2]=='X' and gameBoard[1][1]=='X' and gameBoard[2][0]=='X'):
+        print("X is the winner")
+        return "X"
+    elif (gameBoard[0][2]=='O' and gameBoard[1][1]=='O' and gameBoard[2][0]=='O'):
+        print("O is the winnner")
+        return "O"
+    else:
+        return "N"
 leaveLoop = False
 turnCounter = 0
 while (leaveLoop == False):
     if (turnCounter%2==1):
         printGameBoard()
-        numberPicked=int(input("Enter a number from 1-9: "))
+        numberPicked = int(input("\nChoose a number [1-9]: "))
         if numberPicked >= 1 and numberPicked <= 9:
             modifyArray(numberPicked,'X')
             possibleNumbers.remove(numberPicked)
@@ -54,3 +109,7 @@ while (leaveLoop == False):
                 possibleNumbers.remove(cpuChoice)
                 turnCounter += 1
                 break
+    winner=checkForWinner(gameBoard)
+    if (winner != "N"):
+        print("\n GameOver ")
+    	break
